@@ -1,35 +1,17 @@
-public class Dueño {
+public class Dueño extends Persona {
+    private String direccion;
 
-    private String id;
-    private String nombre;
-
-    public Dueño(String id, String nombre) {
-
-        if (id == null || id.isBlank()) {
-            throw new IllegalArgumentException("La identificaci+on no puede estar vacía."); 
- }
-
- if (nombre == null || nombre.isBlank()){
-    throw new IllegalArgumentException("El nombre no puede estar vacío.");
- }
-
-        this.id = id;
-        this.nombre = nombre; 
+    public Dueño(String identificacion, String nombre, String telefono, String direccion) {
+        super(identificacion, nombre, telefono);
+        this.direccion = direccion;
     }
 
-    public String getId() {
-        return id; 
+    public String getDireccion() {
+        return direccion;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-
-        if (nombre == null || nombre.isBlank()){
-            throw new IllegalArgumentException("El nombre no puede estar vacío.");
-        }
-        this.nombre = nombre; 
+    @Override
+    public String rolEnClinica() {
+        return "Dueño";
     }
 }
