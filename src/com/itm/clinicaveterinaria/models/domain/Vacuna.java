@@ -5,6 +5,7 @@ public class Vacuna {
         private String nombre;
         private LocalDate fechaAplicacion;
         private LocalDate proximaFecha;
+
         public Vacuna(String nombre, LocalDate fechaAplicacion, LocalDate proximaFecha) {
                 this.nombre = nombre;
                 this.fechaAplicacion = fechaAplicacion;
@@ -35,6 +36,7 @@ public class Vacuna {
         this.proximaFecha = proximaFecha;
     }
         
+
         
 
 

@@ -7,9 +7,12 @@ public class Main {
         System.out.println("Nombre: " + dueño.getNombre());
         System.out.println("id: " + dueño.getId());
 
-        Animal Luna=new Animal("LUNA", "PUG", "PERRO", 2, 1234);
-        Animal Kalala=new Animal("KALALA", "VAQUITA", "GATO", 4, 1245);
+        Animal Luna=new Animal("LUNA", "PUG", "PERRO", 2);
+        Animal Kalala=new Animal("KALALA", "VAQUITA", "GATO", 4);
         Luna.MostrarInfo();
-        Kalala.MostrarInfo();
+        Kalala.MostrarInfo();+
+        
+
+        
     }
 }
