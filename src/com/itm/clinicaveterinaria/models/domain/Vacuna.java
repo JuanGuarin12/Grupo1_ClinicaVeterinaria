@@ -1,16 +1,17 @@
+package com.itm.clinicaveterinaria.models.domain;
 
 import java.time.LocalDate;
 
 public class Vacuna {
-        private String nombre;
-        private LocalDate fechaAplicacion;
-        private LocalDate proximaFecha;
+    private String nombre;
+    private LocalDate fechaAplicacion;
+    private LocalDate proximaFecha;
 
-        public Vacuna(String nombre, LocalDate fechaAplicacion, LocalDate proximaFecha) {
-                this.nombre = nombre;
-                this.fechaAplicacion = fechaAplicacion;
-                this.proximaFecha = proximaFecha;
-        }
+    public Vacuna(String nombre, LocalDate fechaAplicacion, LocalDate proximaFecha) {
+        this.nombre = nombre;
+        this.fechaAplicacion = fechaAplicacion;
+        this.proximaFecha = proximaFecha;
+    }
 
     public String getNombre() {
         return nombre;
@@ -35,9 +36,5 @@ public class Vacuna {
     public void setProximaFecha(LocalDate proximaFecha) {
         this.proximaFecha = proximaFecha;
     }
-        
-
-        
-
 
 }
