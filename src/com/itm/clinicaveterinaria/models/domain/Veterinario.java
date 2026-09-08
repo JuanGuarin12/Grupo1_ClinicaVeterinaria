@@ -1,3 +1,5 @@
+package com.itm.clinicaveterinaria.models.domain;
+
 public class Veterinario extends Persona {
 
     private String especialidad;
