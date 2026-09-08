@@ -1,3 +1,5 @@
+package com.itm.clinicaveterinaria.models.domain;
+
 public class Animal {
     private String numeroFicha;
     private String nombre;
@@ -53,22 +55,21 @@ public class Animal {
     public void setEdadAnios(int edadAnios) {
         this.edadAnios = edadAnios;
     }
-    // agrega condicion de numero de ficha para que no sea nulo y que si es nulo salga un error y no copile
+    // agrega condicion de numero de ficha para que no sea nulo y que si es nulo
+    // salga un error y no copile
 
-    public void verificarNumeroficha (String numeroFicha){
-    if(numeroFicha==null){
-        throw new IllegalArgumentException("el numero de ficha es invalido");
-    }
-}
-
-    public void MostrarInfo(){
-    System.out.println("nombre:" + this.nombre);
-    System.out.println("especie:" + this.especie);  
-    System.out.println("raza:" + this.raza);
-    System.out.println("edad:" + this.edadAnios + " años");
-    
-
+    public void verificarNumeroficha(String numeroFicha) {
+        if (numeroFicha == null) {
+            throw new IllegalArgumentException("el numero de ficha es invalido");
+        }
     }
 
-    
+    public void MostrarInfo() {
+        System.out.println("nombre:" + this.nombre);
+        System.out.println("especie:" + this.especie);
+        System.out.println("raza:" + this.raza);
+        System.out.println("edad:" + this.edadAnios + " años");
+
+    }
+
 }
