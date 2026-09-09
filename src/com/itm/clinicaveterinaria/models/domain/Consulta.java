@@ -1,3 +1,5 @@
+package com.itm.clinicaveterinaria.models.domain;
+
 import java.time.LocalDate;
 
 public class Consulta { 
