@@ -6,24 +6,18 @@ public class App {
 
     public static void main(String[] args) {
 
-        // ================== DUEÑOS ==================
         Dueño duenoMiguel = new Dueño("12345", "Miguel", "3001234567", "Calle 100 # 45-20");
         Dueño duenoDaniel = new Dueño("23456", "Daniel", "3007654321", "Carrera 50 # 30-10");
 
-        // ================== VETERINARIOS ==================
         Veterinario vetNatalia = new Veterinario("34567", "Natalia", "3009876543", "Cirugía");
         Veterinario vetJuan = new Veterinario("45678", "Juan", "3005551234", "Medicina Interna");
 
-        // ================== ANIMALES ==================
-        // Constructor: (edadAnios, especie, nombre, numeroFicha, raza)
         Animal luna = new Animal(2, "Perro", "Luna", "F001", "Pug");
         Animal kalala = new Animal(4, "Gato", "Kalala", "F002", "Vaquita");
 
-        // Asignación de mascotas a sus dueños
         duenoMiguel.agregarAnimal(luna);
         duenoDaniel.agregarAnimal(kalala);
 
-        // ================== CONSULTAS ==================
         Consulta consultaLuna = new Consulta(
                 "Chequeo general",
                 "Sano",
@@ -36,23 +30,19 @@ public class App {
                 "Dieta blanda y observación",
                 LocalDate.of(2025, 8, 20));
 
-        // ================== INFORMACIÓN DE ANIMALES ==================
         System.out.println("=== Animales ===");
         luna.MostrarInfo();
         System.out.println();
         kalala.MostrarInfo();
 
-        // ================== INFORMACIÓN DE DUEÑOS ==================
         System.out.println("\n=== Dueños ===");
         System.out.println(duenoMiguel.datosResumen() + " | " + duenoMiguel.rolEnClinica());
         System.out.println(duenoDaniel.datosResumen() + " | " + duenoDaniel.rolEnClinica());
 
-        // ================== INFORMACIÓN DE VETERINARIOS ==================
         System.out.println("\n=== Veterinarios ===");
         System.out.println(vetNatalia.datosResumen() + " | " + vetNatalia.rolEnClinica());
         System.out.println(vetJuan.datosResumen() + " | " + vetJuan.rolEnClinica());
 
-        // ================== INFORMACIÓN DE CONSULTAS ==================
         System.out.println("\n=== Consultas ===");
         System.out.println("Luna - Motivo: " + consultaLuna.getMotivo() +
                 " | Diagnóstico: " + consultaLuna.getDiagnostico() +
