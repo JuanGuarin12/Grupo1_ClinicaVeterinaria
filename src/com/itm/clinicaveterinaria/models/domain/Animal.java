@@ -53,3 +53,4 @@ public class Animal {
         " | Especie: " + this.especie + " | Raza: " + this.raza + 
         " | Edad: " + this.edadAnios + " años");
     }
+}
