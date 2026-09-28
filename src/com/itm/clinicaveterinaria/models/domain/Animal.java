@@ -55,8 +55,7 @@ public class Animal {
     public void setEdadAnios(int edadAnios) {
         this.edadAnios = edadAnios;
     }
-    // agrega condicion de numero de ficha para que no sea nulo y que si es nulo
-    // salga un error y no copile
+
 
     public void verificarNumeroficha(String numeroFicha) {
         if (numeroFicha == null) {
