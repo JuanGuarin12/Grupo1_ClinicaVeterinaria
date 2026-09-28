@@ -11,7 +11,7 @@ public class Dueño extends Persona {
             throw new IllegalArgumentException("La dirección no puede estar vacía.");
         }
         this.direccion = direccion;
-        this.animales = new Animal[5]; // Arreglo inicial con capacidad para 5 animales
+        this.animales = new Animal[5];
         this.cantidadAnimales = 0; 
     }
 
@@ -33,7 +33,7 @@ public class Dueño extends Persona {
 
     public void agregarAnimal(Animal animal) {
         if (animal != null) {
-            // Si el arreglo se llena, se duplica su tamaño de forma manual
+
             if (cantidadAnimales == animales.length) {
                 Animal[] nuevoArreglo = new Animal[animales.length * 2];
                 for (int i = 0; i < animales.length; i++) {

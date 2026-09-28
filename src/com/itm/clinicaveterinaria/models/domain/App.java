@@ -34,9 +34,9 @@ public class App {
                 LocalDate.of(2025, 8, 20));
 
         System.out.println("=== Animales ===");
-        luna.MostrarInfo();
+        luna.mostrarInfo();
         System.out.println();
-        kalala.MostrarInfo();
+        kalala.mostrarInfo();
 
         System.out.println("\n=== Dueños ===");
         System.out.println(duenoMiguel.datosResumen() + " | " + duenoMiguel.rolEnClinica());
