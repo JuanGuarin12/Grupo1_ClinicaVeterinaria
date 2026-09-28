@@ -7,7 +7,6 @@ import com.itm.clinicaveterinaria.models.structures.ListaSimple;
 
 public class AnimalService {
 
- 
     public void registrarConsulta(Animal animal, Consulta consulta) {
         if (animal != null && consulta != null) {
             animal.getConsultas().insertarFinal(consulta);
@@ -33,7 +32,6 @@ public class AnimalService {
         }
         return false;
     }
-
 
     public void registrarVacuna(Animal animal, Vacuna vacuna) {
         if (animal != null && vacuna != null) {
