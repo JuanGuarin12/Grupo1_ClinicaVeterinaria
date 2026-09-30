@@ -27,7 +27,7 @@ public class Animal {
     public String getNumeroFicha() { return numeroFicha; }
     public void setNumeroFicha(String numeroFicha) { this.numeroFicha = numeroFicha; }
 
-    public String getNombre() { return nombre; }
+    public String getNombre() { return this.nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
 
     public String getEspecie() { return especie; }
