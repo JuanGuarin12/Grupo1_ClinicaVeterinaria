@@ -1,7 +1,6 @@
 package com.itm.clinicaveterinaria.models.domain;
 
 import com.itm.clinicaveterinaria.view.MenuListasView;
-
 import java.util.Scanner;
 
 public class App {
@@ -51,7 +50,7 @@ public class App {
             MenuListasView menu = new MenuListasView();
             menu.ejecutarMenu(miMascota);
         } catch (NumberFormatException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
     }
