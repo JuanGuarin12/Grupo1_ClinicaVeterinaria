@@ -7,16 +7,18 @@ public class Vacuna {
     private LocalDate fechaAplicacion;
     private LocalDate proximaFecha;
 
-    public Vacuna(String nombre, LocalDate fechaAplicacion, LocalDate proximaFecha) {
+    private Animal animal;
+
+    public Vacuna(String nombre, LocalDate fechaAplicacion, LocalDate proximaFecha, Animal animal) {
         this.nombre = nombre;
         this.fechaAplicacion = fechaAplicacion;
         this.proximaFecha = proximaFecha;
+        this.animal = animal;
     }
 
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -24,7 +26,6 @@ public class Vacuna {
     public LocalDate getFechaAplicacion() {
         return fechaAplicacion;
     }
-
     public void setFechaAplicacion(LocalDate fechaAplicacion) {
         this.fechaAplicacion = fechaAplicacion;
     }
@@ -32,9 +33,15 @@ public class Vacuna {
     public LocalDate getProximaFecha() {
         return proximaFecha;
     }
-
     public void setProximaFecha(LocalDate proximaFecha) {
         this.proximaFecha = proximaFecha;
+    }
+
+    public Animal getAnimal() {
+        return animal;
+    }
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
     }
 
 }
