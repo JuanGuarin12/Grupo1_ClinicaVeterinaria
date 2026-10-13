@@ -3,6 +3,7 @@ package com.itm.clinicaveterinaria.view;
 import com.itm.clinicaveterinaria.models.domain.Animal;
 import com.itm.clinicaveterinaria.models.domain.Consulta;
 import com.itm.clinicaveterinaria.models.domain.Vacuna;
+import com.itm.clinicaveterinaria.models.domain.Veterinario;
 import com.itm.clinicaveterinaria.service.AnimalService;
 import com.itm.clinicaveterinaria.models.structures.ListaSimple;
 
@@ -60,26 +61,17 @@ public class MenuListasView {
         System.out.print("Tratamiento: ");
         String tratamiento = scanner.nextLine();
 
-        Consulta consulta = new Consulta(motivo, diagnostico, tratamiento, LocalDate.now());
+        Veterinario veterinarioDefault = new Veterinario("1001", "Dr. Ramirez", "12345", "General");
+
+        Consulta consulta = new Consulta(motivo, diagnostico, tratamiento, LocalDate.now(), animal, veterinarioDefault);
         service.registrarConsulta(animal, consulta);
-        System.out.println("✔ Consulta registrada con éxito.");
+        System.out.println("Consulta registrada con éxito.");
     }
 
     private void listarConsultas(Animal animal) {
-        ListaSimple<Consulta> consultas = service.obtenerConsultas(animal);
-        if (consultas.estaVacia()) {
-            System.out.println("No hay consultas registradas.");
-            return;
-        }
-
-        System.out.println("\n--- LISTA DE CONSULTAS ---");
-        for (int i = 0; i < consultas.getTamano(); i++) {
-            Consulta c = service.buscarConsultaPorIndice(animal, i);
-            System.out.println("[" + i + "] Motivo: " + c.getMotivo() + 
-            " | Diag: " + c.getDiagnostico() + 
-            " | Trat: " + c.getTratamiento() + 
-            " | Fecha: " + c.getFecha());
-        }
+        String historial = service.listarHistorialConsultas(animal);
+        System.out.println("\n--- LISTA DE CONSULTAS (HISTORIAL) ---");
+        System.out.println(historial);
     }
 
     private void eliminarConsulta(Animal animal) {
@@ -91,9 +83,9 @@ public class MenuListasView {
         Consulta consulta = service.buscarConsultaPorIndice(animal, idx);
 
         if (consulta != null && service.eliminarConsulta(animal, consulta)) {
-            System.out.println("✔ Consulta eliminada con éxito.");
+            System.out.println("Consulta eliminada con éxito.");
         } else {
-            System.out.println("✖ No se pudo eliminar la consulta.");
+            System.out.println("No se pudo eliminar la consulta.");
         }
     }
 
@@ -101,9 +93,9 @@ public class MenuListasView {
         System.out.print("Nombre de la Vacuna: ");
         String nombre = scanner.nextLine();
 
-        Vacuna vacuna = new Vacuna(nombre, LocalDate.now(), LocalDate.now().plusYears(1));
+        Vacuna vacuna = new Vacuna(nombre, LocalDate.now(), LocalDate.now().plusYears(1), animal);
         service.registrarVacuna(animal, vacuna);
-        System.out.println("✔ Vacuna registrada con éxito.");
+        System.out.println("Vacuna registrada con éxito.");
     }
 
     private void listarVacunas(Animal animal) {
@@ -131,9 +123,9 @@ public class MenuListasView {
         Vacuna vacuna = service.buscarVacunaPorIndice(animal, idx);
 
         if (vacuna != null && service.eliminarVacuna(animal, vacuna)) {
-            System.out.println("✔ Vacuna eliminada con éxito.");
+            System.out.println("Vacuna eliminada con éxito.");
         } else {
-            System.out.println("✖ No se pudo eliminar la vacuna.");
+            System.out.println("No se pudo eliminar la vacuna.");
         }
     }
 }
