@@ -15,18 +15,24 @@ public class Animal {
     private ListaSimple<Vacuna> vacunas;
 
     public Animal(int edadAnios, String especie, String nombre, String numeroFicha, String raza) {
+        verificarNumeroFicha(numeroFicha);
+
         this.edadAnios = edadAnios;
         this.especie = especie;
         this.nombre = nombre;
         this.numeroFicha = numeroFicha;
         this.raza = raza;
+
         this.historialConsultas = new Pila<>();
         this.consultas = new ListaSimple<>();
         this.vacunas = new ListaSimple<>();
     }
 
     public String getNumeroFicha() { return numeroFicha; }
-    public void setNumeroFicha(String numeroFicha) { this.numeroFicha = numeroFicha; }
+
+    public void setNumeroFicha(String numeroFicha) { 
+        verificarNumeroFicha(numeroFicha);
+        this.numeroFicha = numeroFicha; }
 
     public String getNombre() { return this.nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
@@ -43,10 +49,10 @@ public class Animal {
     public ListaSimple<Consulta> getConsultas() { return consultas; }
     public ListaSimple<Vacuna> getVacunas() { return vacunas; }
 
-    public Pila<Consulta> gethistorialConsulta() { return historialConsultas; }
+    public Pila<Consulta> getHistorialConsultas() { return historialConsultas; }
 
     public void verificarNumeroFicha(String numeroFicha) {
-        if (numeroFicha == null) {
+        if (numeroFicha == null || numeroFicha.trim().isEmpty()) {
             throw new IllegalArgumentException("El número de ficha es inválido");
         }
     }
@@ -55,10 +61,6 @@ public class Animal {
         System.out.println("Ficha: " + this.numeroFicha + " | Nombre: " + this.nombre + 
         " | Especie: " + this.especie + " | Raza: " + this.raza + 
         " | Edad: " + this.edadAnios + " años");
-    }
-
-    public Animal(Pila<Consulta> historialConsultas) {
-        this.historialConsultas = historialConsultas;
     }
 }
 
