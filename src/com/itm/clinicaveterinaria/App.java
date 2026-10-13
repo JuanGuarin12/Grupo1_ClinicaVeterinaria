@@ -1,5 +1,7 @@
-package com.itm.clinicaveterinaria.models.domain;
+package com.itm.clinicaveterinaria;
 
+import com.itm.clinicaveterinaria.models.domain.Dueño;
+import com.itm.clinicaveterinaria.models.domain.Animal;
 import com.itm.clinicaveterinaria.view.MenuListasView;
 import java.util.Scanner;
 
@@ -50,8 +52,7 @@ public class App {
             MenuListasView menu = new MenuListasView();
             menu.ejecutarMenu(miMascota);
         } catch (NumberFormatException e) {
-
-            e.printStackTrace();
+            System.out.println("Error: Ingresó un número inválido.");
         }
     }
 }
