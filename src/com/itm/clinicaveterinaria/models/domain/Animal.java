@@ -1,6 +1,6 @@
 package com.itm.clinicaveterinaria.models.domain;
-
 import com.itm.clinicaveterinaria.models.structures.ListaSimple;
+import com.itm.clinicaveterinaria.models.structures.Pila;
 
 public class Animal {
     private String numeroFicha;
@@ -8,6 +8,7 @@ public class Animal {
     private String especie;
     private String raza;
     private int edadAnios;
+    private Pila<Consulta> historialConsultas;
 
 
     private ListaSimple<Consulta> consultas;
@@ -19,7 +20,7 @@ public class Animal {
         this.nombre = nombre;
         this.numeroFicha = numeroFicha;
         this.raza = raza;
-
+        this.historialConsultas = new Pila<>();
         this.consultas = new ListaSimple<>();
         this.vacunas = new ListaSimple<>();
     }
@@ -42,6 +43,8 @@ public class Animal {
     public ListaSimple<Consulta> getConsultas() { return consultas; }
     public ListaSimple<Vacuna> getVacunas() { return vacunas; }
 
+    public Pila<Consulta> gethistorialConsulta() { return historialConsultas; }
+
     public void verificarNumeroFicha(String numeroFicha) {
         if (numeroFicha == null) {
             throw new IllegalArgumentException("El número de ficha es inválido");
@@ -53,4 +56,9 @@ public class Animal {
         " | Especie: " + this.especie + " | Raza: " + this.raza + 
         " | Edad: " + this.edadAnios + " años");
     }
+
+    public Animal(Pila<Consulta> historialConsultas) {
+        this.historialConsultas = historialConsultas;
+    }
 }
+
