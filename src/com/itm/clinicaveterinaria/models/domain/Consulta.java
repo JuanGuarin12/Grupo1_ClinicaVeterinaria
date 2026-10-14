@@ -7,7 +7,19 @@ public class Consulta {
     private String motivo;
     private String diagnostico;
     private String tratamiento;
-    private LocalDate Fecha;
+    private LocalDate fecha;
+
+    private Animal animal;
+    private Veterinario veterinario;
+
+    public Consulta(String motivo, String diagnostico, String tratamiento, LocalDate fecha, Animal animal, Veterinario veterinario) {
+        this.motivo = motivo;
+        this.diagnostico = diagnostico;
+        this.tratamiento = tratamiento;
+        this.fecha = fecha;
+        this.animal = animal;
+        this.veterinario = veterinario;
+    }
 
     public String getMotivo() {
         return motivo;
@@ -15,29 +27,39 @@ public class Consulta {
     public void setMotivo(String motivo) {
         this.motivo = motivo;
     }
+
     public String getDiagnostico() {
         return diagnostico;
     }
     public void setDiagnostico(String diagnostico) {
         this.diagnostico = diagnostico;
     }
+
     public String getTratamiento() {
         return tratamiento;
     }
     public void setTratamiento(String tratamiento) {
         this.tratamiento = tratamiento;
     }
+
     public LocalDate getFecha() {
-        return Fecha;
+        return fecha;
     }
     public void setFecha(LocalDate fecha) {
-        Fecha = fecha;
+        this.fecha = fecha;
     }
 
-    public Consulta(String motivo, String diagnostico, String tratamiento, LocalDate fecha) {
-        this.motivo = motivo;
-        this.diagnostico = diagnostico;
-        this.tratamiento = tratamiento;
-        this.Fecha = fecha;
+    public Animal getAnimal() {
+        return animal;
+    }
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
+    }
+
+    public Veterinario getVeterinario() {
+        return veterinario;
+    }
+    public void setVeterinario(Veterinario veterinario) {
+        this.veterinario = veterinario;
     }
 }
