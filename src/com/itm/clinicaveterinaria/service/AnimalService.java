@@ -26,26 +26,28 @@ public class AnimalService {
             return "No hay consultas registradas en el historial de este animal.";
         }
 
-       Pila<Consulta> auxiliar = new Pila<>();
-       StringBuilder sb = new StringBuilder();
-       int contador  = 1;
+        Pila<Consulta> auxiliar = new Pila<>();
+        StringBuilder sb = new StringBuilder();
+        
+        int indiceReal = animal.getConsultas().getTamano() - 1;
 
-       while (!original.isEmpty()) {
-        Consulta c = original.pop();
-        sb.append(contador).append(". Fecha: ").append(c.getFecha())
-            .append(" | Motivo: ").append(c.getMotivo())
-            .append("| Diagnóstico: ").append(c.getDiagnostico()).append("\n");
-        auxiliar.push(c);
-        contador++;
-       }
+        while (!original.isEmpty()) {
+            Consulta c = original.pop();
+            sb.append("[").append(indiceReal).append("] Fecha: ").append(c.getFecha())
+              .append(" | Motivo: ").append(c.getMotivo())
+              .append(" | Diagnóstico: ").append(c.getDiagnostico()).append("\n");
+            auxiliar.push(c);
+            indiceReal--; 
+        }
 
-       while(!auxiliar.isEmpty()) {
-        original.push(auxiliar.pop());
-       }
+        while(!auxiliar.isEmpty()) {
+            original.push(auxiliar.pop());
+        }
 
-       return sb.toString();
+        return sb.toString();
     }
 
+    // ¡CORREGIDO! Vuelve a ser Animal en lugar de String
     public ListaSimple<Consulta> obtenerConsultas(Animal animal) {
         return animal != null ? animal.getConsultas() : new ListaSimple<>();
     }
@@ -61,7 +63,24 @@ public class AnimalService {
 
     public boolean eliminarConsulta(Animal animal, Consulta consulta) {
         if (animal != null && consulta != null) {
-            return animal.getConsultas().eliminarPorValor(consulta);
+            boolean eliminado = animal.getConsultas().eliminarPorValor(consulta);
+            
+            if (eliminado) {
+                Pila<Consulta> original = animal.getHistorialConsultas();
+                Pila<Consulta> auxiliar = new Pila<>();
+                
+                while (!original.isEmpty()) {
+                    Consulta c = original.pop();
+                    if (c != consulta) {
+                        auxiliar.push(c);
+                    }
+                }
+                
+                while (!auxiliar.isEmpty()) {
+                    original.push(auxiliar.pop());
+                }
+                return true;
+            }
         }
         return false;
     }
@@ -90,5 +109,35 @@ public class AnimalService {
             return animal.getVacunas().eliminarPorValor(vacuna);
         }
         return false;
+    }
+
+    // ==========================================================
+    // MÉTODOS DE LA PILA (Para la vista MenuPilaView del compañero)
+    // ==========================================================
+
+    public Consulta deshacerUltimaConsulta(Animal animal) {
+        if (animal != null && !animal.getHistorialConsultas().isEmpty()) {
+            Consulta eliminada = animal.getHistorialConsultas().pop();
+            animal.getConsultas().eliminarPorValor(eliminada); // Sincroniza con la lista
+            return eliminada;
+        }
+        return null;
+    }
+
+    public Consulta consultarUltimaConsulta(Animal animal) {
+        if (animal != null && !animal.getHistorialConsultas().isEmpty()) {
+            Consulta ultima = animal.getHistorialConsultas().pop();
+            animal.getHistorialConsultas().push(ultima); // La volvemos a guardar para no perderla
+            return ultima;
+        }
+        return null;
+    }
+
+    public boolean sinConsultasPorDeshacer(Animal animal) {
+        return animal == null || animal.getHistorialConsultas().isEmpty();
+    }
+
+    public int contarConsultas(Animal animal) {
+        return animal != null ? animal.getConsultas().getTamano() : 0;
     }
 }
