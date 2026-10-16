@@ -9,10 +9,11 @@ import com.itm.clinicaveterinaria.models.structures.Pila;
 public class AnimalService {
 
     public void registrarConsulta(Animal animal, Consulta consulta) {
-        if (animal != null && consulta != null) {
-            animal.getConsultas().insertarFinal(consulta);
-            animal.getHistorialConsultas().push(consulta);
+        if (animal == null || consulta == null) {
+            throw new IllegalArgumentException("Animal o consulta no pueden ser nulos");
         }
+        animal.getConsultas().insertarFinal(consulta);
+        animal.getHistorialConsultas().push(consulta);
     }
 
     public String listarHistorialConsultas(Animal animal) {
@@ -47,7 +48,6 @@ public class AnimalService {
         return sb.toString();
     }
 
-    // ¡CORREGIDO! Vuelve a ser Animal en lugar de String
     public ListaSimple<Consulta> obtenerConsultas(Animal animal) {
         return animal != null ? animal.getConsultas() : new ListaSimple<>();
     }
@@ -63,6 +63,7 @@ public class AnimalService {
 
     public boolean eliminarConsulta(Animal animal, Consulta consulta) {
         if (animal != null && consulta != null) {
+            // Tu sincronización perfecta entre Lista y Pila
             boolean eliminado = animal.getConsultas().eliminarPorValor(consulta);
             
             if (eliminado) {
@@ -86,9 +87,10 @@ public class AnimalService {
     }
 
     public void registrarVacuna(Animal animal, Vacuna vacuna) {
-        if (animal != null && vacuna != null) {
-            animal.getVacunas().insertarFinal(vacuna);
+        if (animal == null || vacuna == null) {
+            throw new IllegalArgumentException("Animal o vacuna no pueden ser nulos");
         }
+        animal.getVacunas().insertarFinal(vacuna);
     }
 
     public ListaSimple<Vacuna> obtenerVacunas(Animal animal) {
@@ -111,33 +113,41 @@ public class AnimalService {
         return false;
     }
 
-    // ==========================================================
-    // MÉTODOS DE LA PILA (Para la vista MenuPilaView del compañero)
-    // ==========================================================
-
     public Consulta deshacerUltimaConsulta(Animal animal) {
-        if (animal != null && !animal.getHistorialConsultas().isEmpty()) {
+        if (animal == null) {
+            throw new IllegalArgumentException("El animal no puede ser nulo");
+        }
+        if (!animal.getHistorialConsultas().isEmpty()) {
             Consulta eliminada = animal.getHistorialConsultas().pop();
-            animal.getConsultas().eliminarPorValor(eliminada); // Sincroniza con la lista
+            animal.getConsultas().eliminarPorValor(eliminada); 
             return eliminada;
         }
         return null;
     }
 
     public Consulta consultarUltimaConsulta(Animal animal) {
-        if (animal != null && !animal.getHistorialConsultas().isEmpty()) {
+        if (animal == null) {
+            throw new IllegalArgumentException("El animal no puede ser nulo");
+        }
+        if (!animal.getHistorialConsultas().isEmpty()) {
             Consulta ultima = animal.getHistorialConsultas().pop();
-            animal.getHistorialConsultas().push(ultima); // La volvemos a guardar para no perderla
+            animal.getHistorialConsultas().push(ultima); 
             return ultima;
         }
         return null;
     }
 
     public boolean sinConsultasPorDeshacer(Animal animal) {
-        return animal == null || animal.getHistorialConsultas().isEmpty();
+        if (animal == null) {
+            throw new IllegalArgumentException("El animal no puede ser nulo");
+        }
+        return animal.getHistorialConsultas().isEmpty();
     }
 
     public int contarConsultas(Animal animal) {
-        return animal != null ? animal.getConsultas().getTamano() : 0;
+        if (animal == null) {
+            throw new IllegalArgumentException("El animal no puede ser nulo");
+        }
+        return animal.getConsultas().getTamano();
     }
 }
