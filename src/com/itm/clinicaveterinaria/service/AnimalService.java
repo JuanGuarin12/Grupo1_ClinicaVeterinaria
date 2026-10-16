@@ -61,6 +61,10 @@ public class AnimalService {
         }
     }
 
+    // eliminarUltimaConsultaHistorial -> Eliminan de la pila: pop 
+
+
+    // eliminar de la lista: eliminar por indice
     public boolean eliminarConsulta(Animal animal, Consulta consulta) {
         if (animal != null && consulta != null) {
             // Tu sincronización perfecta entre Lista y Pila
