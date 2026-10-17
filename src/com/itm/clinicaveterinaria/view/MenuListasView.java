@@ -5,7 +5,7 @@ import com.itm.clinicaveterinaria.models.domain.Consulta;
 import com.itm.clinicaveterinaria.models.domain.Vacuna;
 import com.itm.clinicaveterinaria.models.domain.Veterinario;
 import com.itm.clinicaveterinaria.service.AnimalService;
-import com.itm.clinicaveterinaria.models.structures.ListaSimple;
+import com.itm.clinicaveterinaria.structures.ListaSimple;
 
 import java.time.LocalDate;
 import java.util.Scanner;

@@ -3,8 +3,8 @@ package com.itm.clinicaveterinaria.service;
 import com.itm.clinicaveterinaria.models.domain.Animal;
 import com.itm.clinicaveterinaria.models.domain.Consulta;
 import com.itm.clinicaveterinaria.models.domain.Vacuna;
-import com.itm.clinicaveterinaria.models.structures.ListaSimple;
-import com.itm.clinicaveterinaria.models.structures.Pila;
+import com.itm.clinicaveterinaria.structures.ListaSimple;
+import com.itm.clinicaveterinaria.structures.Pila;
 
 public class AnimalService {
 

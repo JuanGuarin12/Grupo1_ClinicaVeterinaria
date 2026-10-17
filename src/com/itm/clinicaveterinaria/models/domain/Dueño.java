@@ -1,6 +1,6 @@
 package com.itm.clinicaveterinaria.models.domain;
 
-import com.itm.clinicaveterinaria.models.structures.ListaSimple;
+import com.itm.clinicaveterinaria.structures.ListaSimple;
 
 public class Dueño extends Persona {
     private String direccion;

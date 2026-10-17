@@ -1,6 +1,6 @@
 package com.itm.clinicaveterinaria.models.domain;
-import com.itm.clinicaveterinaria.models.structures.ListaSimple;
-import com.itm.clinicaveterinaria.models.structures.Pila;
+import com.itm.clinicaveterinaria.structures.ListaSimple;
+import com.itm.clinicaveterinaria.structures.Pila;
 
 public class Animal {
     private String numeroFicha;

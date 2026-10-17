@@ -1,4 +1,4 @@
-package com.itm.clinicaveterinaria.models.structures;
+package com.itm.clinicaveterinaria.structures;
 
 public class Nodo<T> {
     private T dato;

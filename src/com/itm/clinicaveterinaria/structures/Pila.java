@@ -1,4 +1,4 @@
-package com.itm.clinicaveterinaria.models.structures;
+package com.itm.clinicaveterinaria.structures;
 
     public class Pila<T> {
     private Nodo<T> tope;
