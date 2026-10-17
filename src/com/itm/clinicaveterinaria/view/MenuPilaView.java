@@ -48,8 +48,8 @@ public class MenuPilaView {
     private void mostrarOpciones(Animal animal) {
         System.out.println("\n=== MENÚ DE PILA DE CONSULTAS - " + animal.getNombre() + " ===");
         System.out.println("1. Registrar consulta");
-        System.out.println("2. Deshacer última consulta (Pop)");
-        System.out.println("3. Ver última consulta (Top)");
+        System.out.println("2. Deshacer última consulta");
+        System.out.println("3. Ver última consulta");
         System.out.println("4. ¿Hay consultas por deshacer?");
         System.out.println("5. Cantidad de consultas");
         System.out.println("6. Listar consultas (Historial completo)");
@@ -73,7 +73,7 @@ public class MenuPilaView {
     }
 
     private void deshacer(Animal animal) {
-        Consulta deshecha = animalService.deshacerUltimaConsulta(animal);
+        Consulta deshecha = animalService.eliminarUltimaConsultaHistorial(animal);
         if (deshecha != null) {
             System.out.println("Consulta deshecha exitosamente: " + deshecha.getMotivo() + " - " + deshecha.getDiagnostico());
         } else {

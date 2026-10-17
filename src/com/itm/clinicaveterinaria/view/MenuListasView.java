@@ -29,9 +29,11 @@ public class MenuListasView {
             System.out.println("1. Agregar Consulta");
             System.out.println("2. Listar Consultas");
             System.out.println("3. Eliminar Consulta por Índice");
-            System.out.println("4. Agregar Vacuna");
-            System.out.println("5. Listar Vacunas");
-            System.out.println("6. Eliminar Vacuna por Índice");
+            System.out.println("4. Deshacer Última Consulta");
+            System.out.println("5. Ver Historial Completo");
+            System.out.println("6. Agregar Vacuna");
+            System.out.println("7. Listar Vacunas");
+            System.out.println("8. Eliminar Vacuna por Índice");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
 
@@ -41,9 +43,11 @@ public class MenuListasView {
                     case 1 -> agregarConsulta(animal);
                     case 2 -> listarConsultas(animal);
                     case 3 -> eliminarConsulta(animal);
-                    case 4 -> agregarVacuna(animal);
-                    case 5 -> listarVacunas(animal);
-                    case 6 -> eliminarVacuna(animal);
+                    case 4 -> deshacerConsulta(animal);
+                    case 5 -> listarHistorial(animal);
+                    case 6 -> agregarVacuna(animal);
+                    case 7 -> listarVacunas(animal);
+                    case 8 -> eliminarVacuna(animal);
                     case 0 -> System.out.println("Saliendo del menú...");
                     default -> System.out.println("Opción no válida.");
                 }
@@ -65,13 +69,13 @@ public class MenuListasView {
 
         Consulta consulta = new Consulta(motivo, diagnostico, tratamiento, LocalDate.now(), animal, veterinarioDefault);
         service.registrarConsulta(animal, consulta);
-        System.out.println("Consulta registrada con éxito.");
+        System.out.println("Consulta registrada con éxito en la Lista y en la Pila.");
     }
 
     private void listarConsultas(Animal animal) {
-        String historial = service.listarHistorialConsultas(animal);
-        System.out.println("\n--- LISTA DE CONSULTAS (HISTORIAL) ---");
-        System.out.println(historial);
+        String lista = service.listarConsultasDeLista(animal);
+        System.out.println("\n--- CONSULTAS ACTIVAS ---");
+        System.out.println(lista);
     }
 
     private void eliminarConsulta(Animal animal) {
@@ -80,13 +84,27 @@ public class MenuListasView {
 
         System.out.print("Índice de la consulta a eliminar: ");
         int idx = Integer.parseInt(scanner.nextLine());
-        Consulta consulta = service.buscarConsultaPorIndice(animal, idx);
 
-        if (consulta != null && service.eliminarConsulta(animal, consulta)) {
-            System.out.println("Consulta eliminada con éxito.");
+        if (service.eliminarConsulta(animal, idx)) {
+            System.out.println("Consulta eliminada con éxito de la lista.");
         } else {
-            System.out.println("No se pudo eliminar la consulta.");
+            System.out.println("No se pudo eliminar la consulta. Verifique el índice.");
         }
+    }
+
+    private void deshacerConsulta(Animal animal) {
+        Consulta deshecha = service.eliminarUltimaConsultaHistorial(animal);
+        if (deshecha != null) {
+            System.out.println("Se deshizo exitosamente de la Pila: " + deshecha.getMotivo() + " - " + deshecha.getDiagnostico());
+        } else {
+            System.out.println("No hay consultas en la pila para deshacer.");
+        }
+    }
+
+    private void listarHistorial(Animal animal) {
+        String historial = service.listarHistorialConsultas(animal);
+        System.out.println("\n--- HISTORIAL DE CONSULTAS (PILA) ---");
+        System.out.println(historial);
     }
 
     private void agregarVacuna(Animal animal) {

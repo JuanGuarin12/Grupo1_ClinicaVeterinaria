@@ -16,6 +16,28 @@ public class AnimalService {
         animal.getHistorialConsultas().push(consulta);
     }
 
+    public String listarConsultasDeLista(Animal animal) {
+        if (animal == null) {
+            return "Animal no válido.";
+        }    
+
+        ListaSimple<Consulta> consultas = animal.getConsultas(); 
+        if (consultas.getTamano() == 0) {
+            return "No hay consultas en la lista";
+        }    
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < consultas.getTamano(); i++) {
+            Consulta c = buscarConsultaPorIndice(animal, i);
+            if (c != null) {
+                sb.append("[").append(i).append("] Fecha: ").append(c.getFecha())
+                .append(" | Motivo: ").append(c.getMotivo())
+                .append(" | Diagnóstico: ").append(c.getDiagnostico()).append("\n");
+            }
+        }
+        return sb.toString();
+    }
+
     public String listarHistorialConsultas(Animal animal) {
         if (animal == null) {
             return "Animal no válido.";
@@ -24,27 +46,25 @@ public class AnimalService {
         Pila<Consulta> original = animal.getHistorialConsultas();
 
         if (original.isEmpty()) {
-            return "No hay consultas registradas en el historial de este animal.";
+            return "No hay consultas registradas en el historial (Pila).";
         }
 
         Pila<Consulta> auxiliar = new Pila<>();
         StringBuilder sb = new StringBuilder();
-        
-        int indiceReal = animal.getConsultas().getTamano() - 1;
+        int orden = 1;
 
         while (!original.isEmpty()) {
             Consulta c = original.pop();
-            sb.append("[").append(indiceReal).append("] Fecha: ").append(c.getFecha())
+            sb.append("Historial ").append(orden).append(" -> Fecha: ").append(c.getFecha())
               .append(" | Motivo: ").append(c.getMotivo())
               .append(" | Diagnóstico: ").append(c.getDiagnostico()).append("\n");
             auxiliar.push(c);
-            indiceReal--; 
+            orden++; 
         }
 
         while(!auxiliar.isEmpty()) {
             original.push(auxiliar.pop());
         }
-
         return sb.toString();
     }
 
@@ -61,34 +81,26 @@ public class AnimalService {
         }
     }
 
-    // eliminarUltimaConsultaHistorial -> Eliminan de la pila: pop 
+    public Consulta eliminarUltimaConsultaHistorial(Animal animal) {
+        if (animal == null) {
+            throw new IllegalArgumentException("El animal no puede ser nulo");
+        }
+        if (!animal.getHistorialConsultas().isEmpty()) {
+            return animal.getHistorialConsultas().pop();
+        }
+        return null;
+    }
 
-
-    // eliminar de la lista: eliminar por indice
-    public boolean eliminarConsulta(Animal animal, Consulta consulta) {
-        if (animal != null && consulta != null) {
-            // Tu sincronización perfecta entre Lista y Pila
-            boolean eliminado = animal.getConsultas().eliminarPorValor(consulta);
+    public boolean eliminarConsulta(Animal animal, int indice) {
+        if (animal == null) return false; 
+        
+        Consulta consultaEncontrada = buscarConsultaPorIndice(animal, indice);
             
-            if (eliminado) {
-                Pila<Consulta> original = animal.getHistorialConsultas();
-                Pila<Consulta> auxiliar = new Pila<>();
-                
-                while (!original.isEmpty()) {
-                    Consulta c = original.pop();
-                    if (c != consulta) {
-                        auxiliar.push(c);
-                    }
-                }
-                
-                while (!auxiliar.isEmpty()) {
-                    original.push(auxiliar.pop());
-                }
-                return true;
-            }
+        if (consultaEncontrada != null) {
+            return animal.getConsultas().eliminarPorValor(consultaEncontrada);
         }
         return false;
-    }
+    }        
 
     public void registrarVacuna(Animal animal, Vacuna vacuna) {
         if (animal == null || vacuna == null) {
@@ -115,18 +127,6 @@ public class AnimalService {
             return animal.getVacunas().eliminarPorValor(vacuna);
         }
         return false;
-    }
-
-    public Consulta deshacerUltimaConsulta(Animal animal) {
-        if (animal == null) {
-            throw new IllegalArgumentException("El animal no puede ser nulo");
-        }
-        if (!animal.getHistorialConsultas().isEmpty()) {
-            Consulta eliminada = animal.getHistorialConsultas().pop();
-            animal.getConsultas().eliminarPorValor(eliminada); 
-            return eliminada;
-        }
-        return null;
     }
 
     public Consulta consultarUltimaConsulta(Animal animal) {
