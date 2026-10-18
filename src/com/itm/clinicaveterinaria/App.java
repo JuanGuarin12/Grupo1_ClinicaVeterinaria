@@ -54,7 +54,7 @@ public class App {
             System.out.println("\n Mascota registrada exitosamente para el dueño " + dueno.getNombre());
             miMascota.mostrarInfo();
 
-            // ========== UNA SOLA instancia del Service (importante) ==========
+        
             AnimalService service = new AnimalService();
 
 
