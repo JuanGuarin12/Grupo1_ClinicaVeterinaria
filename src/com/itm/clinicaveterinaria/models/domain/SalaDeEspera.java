@@ -11,7 +11,7 @@ public class SalaDeEspera {
             throw new IllegalArgumentException("El nombre de la sala no puede ser nulo ni estar vacío");
         }
         this.nombre = nombre;
-        this.fila = new Cola<>(); // Se inicializa la cola vacía obligatoriamente
+        this.fila = new Cola<>();
     }
 
     public String getNombre() {

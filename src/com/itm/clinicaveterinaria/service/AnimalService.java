@@ -2,11 +2,16 @@ package com.itm.clinicaveterinaria.service;
 
 import com.itm.clinicaveterinaria.models.domain.Animal;
 import com.itm.clinicaveterinaria.models.domain.Consulta;
+import com.itm.clinicaveterinaria.models.domain.SalaDeEspera;
 import com.itm.clinicaveterinaria.models.domain.Vacuna;
+import com.itm.clinicaveterinaria.structures.Cola;
 import com.itm.clinicaveterinaria.structures.ListaSimple;
 import com.itm.clinicaveterinaria.structures.Pila;
 
 public class AnimalService {
+
+    private final SalaDeEspera salaDeEspera = new SalaDeEspera("Sala de espera 1");
+    private final ListaSimple<Animal> animales = new ListaSimple<>();
 
     public void registrarConsulta(Animal animal, Consulta consulta) {
         if (animal == null || consulta == null) {
@@ -154,4 +159,69 @@ public class AnimalService {
         }
         return animal.getConsultas().getTamano();
     }
+
+    public Animal buscarPorIdentificacion(String identificacion) {
+    if (identificacion == null || identificacion.isBlank()) {
+        return null;
+    }
+
+    for (int i = 0; i < animales.getTamano(); i++) {
+        Animal animal = animales.buscarPorIndice(i);
+        if (animal != null && identificacion.equals(animal.getIdentificacion())) {
+            return animal;
+        }
+    }
+    return null;
+    }
+
+    private Animal buscarAnimalOFallar(String identificacion) {
+    Animal animal = buscarPorIdentificacion(identificacion);
+    if (animal == null) {
+        throw new IllegalArgumentException("El animal con identificación " + identificacion + " no existe");
+    }
+    return animal;
+    }
+
+    public void registrarLlegada(String identificacion) {
+    Animal animal = buscarAnimalOFallar(identificacion);
+    salaDeEspera.getFila().enqueue(animal);
+    }
+
+    public Animal atenderSiguiente() {
+    return salaDeEspera.getFila().dequeue();
+    }
+
+    public Animal consultarSiguiente() {
+    return salaDeEspera.getFila().front();
+    }
+
+    public boolean sinAnimalesEnEspera() {
+    return salaDeEspera.getFila().isEmpty();
+    }
+
+    public int contarEnEspera() {
+    return salaDeEspera.getFila().size();
+    }
+
+    public String listarEnEspera() {
+    Cola<Animal> fila = salaDeEspera.getFila();
+
+    if (fila.isEmpty()) {
+        return "No hay animales en espera";
+    }
+
+    StringBuilder texto = new StringBuilder();
+    int total = fila.size();
+
+    for (int i = 1; i <= total; i++) {
+        Animal animal = fila.dequeue();
+        texto.append(i).append(". ").append(animal.getNombre()).append("\n");
+        fila.enqueue(animal);                   
+    }
+
+    return texto.toString();
+    }
 }
+
+
+

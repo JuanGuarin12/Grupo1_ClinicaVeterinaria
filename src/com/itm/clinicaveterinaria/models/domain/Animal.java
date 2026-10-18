@@ -62,5 +62,13 @@ public class Animal {
         " | Especie: " + this.especie + " | Raza: " + this.raza + 
         " | Edad: " + this.edadAnios + " años");
     }
+
+    public Object getIdentificacion1() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public Object getIdentificacion() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
 
