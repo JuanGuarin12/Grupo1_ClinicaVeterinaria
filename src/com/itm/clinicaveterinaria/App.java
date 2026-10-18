@@ -57,7 +57,6 @@ public class App {
         
             AnimalService service = new AnimalService();
 
-
             int opcion;
             do {
                 System.out.println("\n========== MENÚ PRINCIPAL ==========");
