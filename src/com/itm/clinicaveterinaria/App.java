@@ -5,7 +5,7 @@ import com.itm.clinicaveterinaria.models.domain.Animal;
 import com.itm.clinicaveterinaria.service.AnimalService;
 import com.itm.clinicaveterinaria.view.MenuListasView;
 import com.itm.clinicaveterinaria.view.MenuPilaView;
-import com.itm.clinicaveterinaria.view.MenuColaView;   // ← el menú de colas (Parte 5)
+import com.itm.clinicaveterinaria.view.MenuColaView; 
 
 import java.util.Scanner;
 
