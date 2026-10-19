@@ -1,12 +1,11 @@
 package com.itm.clinicaveterinaria;
 
-import com.itm.clinicaveterinaria.models.domain.Dueño;
 import com.itm.clinicaveterinaria.models.domain.Animal;
+import com.itm.clinicaveterinaria.models.domain.Dueño;
 import com.itm.clinicaveterinaria.service.AnimalService;
+import com.itm.clinicaveterinaria.view.MenuColaView;
 import com.itm.clinicaveterinaria.view.MenuListasView;
 import com.itm.clinicaveterinaria.view.MenuPilaView;
-import com.itm.clinicaveterinaria.view.MenuColaView; 
-
 import java.util.Scanner;
 
 public class App {
@@ -36,7 +35,7 @@ public class App {
             System.out.print("Ingrese el nombre del animal: ");
             String nombreAnimal = sc.nextLine();
 
-            System.out.print("Ingrese el número de ficha: ");
+            System.out.print("Ingrese el número de identificación: ");
             String numeroFicha = sc.nextLine();
 
             System.out.print("Ingrese la especie: ");
@@ -56,6 +55,7 @@ public class App {
 
         
             AnimalService service = new AnimalService();
+            service.agregarAnimal(miMascota);
 
             int opcion;
             do {
@@ -74,8 +74,8 @@ public class App {
                         menuListas.ejecutarMenu(miMascota);
                     }
                     case 2 -> {
-                        MenuPilaView menuPila = new MenuPilaView(service, miMascota);
-                        menuPila.iniciar();
+                        MenuPilaView menuPila = new MenuPilaView();
+                        menuPila.iniciar(miMascota);
                     }
                     case 3 -> {
 

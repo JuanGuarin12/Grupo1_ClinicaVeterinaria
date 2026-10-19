@@ -3,24 +3,23 @@ import com.itm.clinicaveterinaria.structures.ListaSimple;
 import com.itm.clinicaveterinaria.structures.Pila;
 
 public class Animal {
-    private String numeroFicha;
+    private String identificacion;
     private String nombre;
     private String especie;
     private String raza;
     private int edadAnios;
     private Pila<Consulta> historialConsultas;
 
-
     private ListaSimple<Consulta> consultas;
     private ListaSimple<Vacuna> vacunas;
 
-    public Animal(int edadAnios, String especie, String nombre, String numeroFicha, String raza) {
-        verificarNumeroFicha(numeroFicha);
+    public Animal(int edadAnios, String especie, String nombre, String identificacion, String raza) {
+        verificarIdentificacion(identificacion);
 
         this.edadAnios = edadAnios;
         this.especie = especie;
         this.nombre = nombre;
-        this.numeroFicha = numeroFicha;
+        this.identificacion = identificacion;
         this.raza = raza;
 
         this.historialConsultas = new Pila<>();
@@ -28,11 +27,14 @@ public class Animal {
         this.vacunas = new ListaSimple<>();
     }
 
-    public String getNumeroFicha() { return numeroFicha; }
+    public String getIdentificacion() { 
+        return identificacion; 
+    }
 
-    public void setNumeroFicha(String numeroFicha) { 
-        verificarNumeroFicha(numeroFicha);
-        this.numeroFicha = numeroFicha; }
+    public void setIdentificacion(String identificacion) { 
+        verificarIdentificacion(identificacion);
+        this.identificacion = identificacion; 
+    }
 
     public String getNombre() { return this.nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
@@ -51,24 +53,15 @@ public class Animal {
 
     public Pila<Consulta> getHistorialConsultas() { return historialConsultas; }
 
-    public void verificarNumeroFicha(String numeroFicha) {
-        if (numeroFicha == null || numeroFicha.trim().isEmpty()) {
-            throw new IllegalArgumentException("El número de ficha es inválido");
+    public void verificarIdentificacion(String identificacion) {
+        if (identificacion == null || identificacion.trim().isEmpty()) {
+            throw new IllegalArgumentException("La identificación es inválida");
         }
     }
 
     public void mostrarInfo() {
-        System.out.println("Ficha: " + this.numeroFicha + " | Nombre: " + this.nombre + 
+        System.out.println("Identificación: " + this.identificacion + " | Nombre: " + this.nombre + 
         " | Especie: " + this.especie + " | Raza: " + this.raza + 
         " | Edad: " + this.edadAnios + " años");
     }
-
-    public Object getIdentificacion1() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public Object getIdentificacion() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }
-

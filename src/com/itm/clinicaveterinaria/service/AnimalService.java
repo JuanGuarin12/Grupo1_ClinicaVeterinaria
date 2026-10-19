@@ -221,6 +221,13 @@ public class AnimalService {
 
     return texto.toString();
     }
+
+    public void agregarAnimal(Animal animal) {
+    if (animal == null) {
+        throw new IllegalArgumentException("El animal no puede ser nulo");
+    }
+    animales.insertarFinal(animal);
+}
 }
 
 

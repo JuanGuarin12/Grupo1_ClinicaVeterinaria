@@ -2,8 +2,6 @@ package com.itm.clinicaveterinaria.view;
 
 import com.itm.clinicaveterinaria.models.domain.Animal;
 import com.itm.clinicaveterinaria.service.AnimalService;
-import com.itm.clinicaveterinaria.utils.ConsoleUtils; 
-
 
 public class MenuColaView {
 
@@ -82,4 +80,4 @@ public class MenuColaView {
         System.out.println(animalService.listarEnEspera());
     }
 }
-}
+

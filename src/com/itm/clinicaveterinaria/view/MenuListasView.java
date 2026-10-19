@@ -6,7 +6,6 @@ import com.itm.clinicaveterinaria.models.domain.Vacuna;
 import com.itm.clinicaveterinaria.models.domain.Veterinario;
 import com.itm.clinicaveterinaria.service.AnimalService;
 import com.itm.clinicaveterinaria.structures.ListaSimple;
-
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -51,7 +50,7 @@ public class MenuListasView {
                     case 0 -> System.out.println("Saliendo del menú...");
                     default -> System.out.println("Opción no válida.");
                 }
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Error de entrada: " + e.getMessage());
             }
         } while (opcion != 0);
