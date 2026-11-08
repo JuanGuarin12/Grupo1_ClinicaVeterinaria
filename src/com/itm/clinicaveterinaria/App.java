@@ -6,6 +6,7 @@ import com.itm.clinicaveterinaria.service.AnimalService;
 import com.itm.clinicaveterinaria.view.MenuColaView;
 import com.itm.clinicaveterinaria.view.MenuListasView;
 import com.itm.clinicaveterinaria.view.MenuPilaView;
+import com.itm.clinicaveterinaria.view.MenuSeguimientoView;
 import java.util.Scanner;
 
 public class App {
@@ -63,6 +64,7 @@ public class App {
                 System.out.println("1. Menú de Listas (Consultas y Vacunas)");
                 System.out.println("2. Menú de Pilas (Historial de Consultas)");
                 System.out.println("3. Menú de Colas (Sala de Espera)");
+                System.out.println("4. Menú de Seguimiento (Lista Doble y Archivos)");
                 System.out.println("0. Salir");
                 System.out.print("Elija una opción: ");
 
@@ -81,6 +83,10 @@ public class App {
 
                         MenuColaView menuCola = new MenuColaView(service);  
                         menuCola.iniciar();
+                    }
+                    case 4 -> {
+                        MenuSeguimientoView menuSeguimiento = new MenuSeguimientoView();
+                        menuSeguimiento.mostrarMenu();
                     }
                     case 0 -> System.out.println("Saliendo del sistema...");
                     default -> System.out.println("Opción inválida");

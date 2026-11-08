@@ -39,7 +39,7 @@ public class Evolucion {
 
     @Override 
     public String toString() {
-        return numeroFicha + ";" + fecha + "," + temperaturaC + ";" + pesoKg + ";" + observacion;
+        return numeroFicha + ";" + fecha + ";" + temperaturaC + ";" + pesoKg + ";" + observacion;
     }
 
 }
