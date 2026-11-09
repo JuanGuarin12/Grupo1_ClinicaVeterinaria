@@ -2,9 +2,8 @@ package com.itm.clinicaveterinaria.service;
 
 import com.itm.clinicaveterinaria.models.domain.Evolucion;
 import com.itm.clinicaveterinaria.models.domain.SeguimientoHospitalizados;
-import com.itm.clinicaveterinaria.models.structures.ListaDoble;
-import com.itm.clinicaveterinaria.models.structures.NodoDoble;
-
+import com.itm.clinicaveterinaria.structures.ListaDoble;
+import com.itm.clinicaveterinaria.structures.NodoDoble;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -130,7 +129,6 @@ public class SeguimientoService {
                 }
             }
         } catch (IOException ignored) {
-            
         }
     }
 }
