@@ -1,7 +1,7 @@
 package com.itm.clinicaveterinaria.view;
 
-import com.itm.clinicaveterinaria.service.SeguimientoService;
 import com.itm.clinicaveterinaria.models.domain.Evolucion;
+import com.itm.clinicaveterinaria.service.SeguimientoService;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -45,7 +45,7 @@ public class MenuSeguimientoView {
                 break;
             case 2: 
                 System.out.println("\n--- Evoluciones (Cronológico) ---");
-                System.out.println(service.ListarEvolucionesCronologico());
+                System.out.println(service.listarEvolucionesCronologico());
                 break;
             case 3:
                 System.out.println("\n--- Evoluciones (Inverso) ---");
@@ -77,7 +77,6 @@ public class MenuSeguimientoView {
                 break;
             case 7:
                 System.out.println("\nGuardando datos en el archivo de texto...");
-                // Aquí es donde se dispara el BufferedWriter que programamos ayer
                 System.out.println(service.guardarEvoluciones()); 
                 System.out.println("Saliendo del módulo. ¡Hasta pronto!");
                 break;
